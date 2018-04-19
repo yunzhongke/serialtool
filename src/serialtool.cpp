@@ -1,4 +1,6 @@
 #include <QtGui>
+#include <QtWidgets/QMessageBox>
+#include <QtWidgets/QFileDialog>
 #include "serialtool.h"
 
 MyComTool::MyComTool(QWidget* parent)
@@ -350,9 +352,11 @@ void MyComTool::set_autoCom_Sent()
 	 	else
 	 	{
 	 		sent_nolimited = false;	 	
- 			auto_sent_count = atoi(autoSentTimesComboBox->currentText().toAscii());
+             //auto_sent_count = atoi(autoSentTimesComboBox->currentText().toAscii());
+ 			auto_sent_count = atoi(autoSentTimesComboBox->currentText().toLatin1());
 		}
-		auto_sent_time = atoi(sentTimeLineEdit->text().toAscii());
+		auto_sent_time = atoi(sentTimeLineEdit->text().toLatin1());
+		//auto_sent_time = atoi(sentTimeLineEdit->text().toAscii());
 		manualCom_Sent();
 		auto_sent_interval.start (auto_sent_time);
 	 	autoSentpushButton->setText(tr("停止发送"));
@@ -620,7 +624,7 @@ void MyComTool::manualCom_Sent()
         eol.sprintf("%c%c", 0x0d, 0x0a);
         user_input.append(eol);
     }
-	to_sent =  user_input.toAscii().data();
+	to_sent =  user_input.toLatin1().data();
 	to_sent_tmp = user_input.data();
 	char_count = 0;
 	already_sent_times++;

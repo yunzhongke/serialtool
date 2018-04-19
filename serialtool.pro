@@ -1,3 +1,4 @@
+Qt += widgets
 TEMPLATE = app
 TARGET = serialtool
 DEPENDPATH += . src ui
